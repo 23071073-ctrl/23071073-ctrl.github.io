@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <title>CV - Đỗ Hải Anh</title>
   <style>
+    /* CSS cho Navigation Bar */
     body {
       margin: 0;
       padding: 0;
       background: #ccc;
       font-family: Arial, sans-serif;
+      scroll-behavior: smooth; /* cuộn mượt */
     }
 
     nav#topmenu ul {
@@ -17,6 +19,9 @@
       text-align: center;
       padding: 0;
       margin: 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     nav#topmenu li {
@@ -58,7 +63,7 @@
     }
 
     section {
-      margin-bottom: 20px;
+      margin-bottom: 40px;
     }
 
     h3 {
@@ -77,19 +82,19 @@
   <!-- Navigation Bar -->
   <nav id="topmenu">
     <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Học vấn</a></li>
-      <li><a href="#">Kinh nghiệm</a></li>
-      <li><a href="#">Kỹ năng</a></li>
-      <li><a href="#">Liên hệ</a></li>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#hocvan">Học vấn</a></li>
+      <li><a href="#kinhnghiem">Kinh nghiệm</a></li>
+      <li><a href="#kynang">Kỹ năng</a></li>
+      <li><a href="#lienhe">Liên hệ</a></li>
     </ul>
   </nav>
 
   <!-- CV -->
-  <header>
+  <header id="home">
     <h2>Đỗ Hải Anh</h2>
     <img src="cat meme.jpg" alt="Ảnh đại diện" width="150">
-    <p>Email: 23071073.vnu.edu.vn | Điện thoại: 0333270048</p>
+    <p>Email: 23071073@vnu.edu.vn | Điện thoại: 0333270048</p>
   </header>
 
   <main>
