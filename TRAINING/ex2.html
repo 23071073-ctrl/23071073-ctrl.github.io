@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer parts price list</title>
+<style>
+    table {
+        border: 1px solid black;
+        padding: 8px;
+        border-collapse: collapse;
+        width: 400px;
+        margin-bottom: 15px;
+    }
+    th,td {
+        border: 1px solid black;
+        padding: 8px;
+    }
+    
+</style>
+</head>
+<body>
+    <table id="priceTable">
+        <tr>
+            <th>Parts</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>
+            <ul>
+            <li>CPU &trade;</li>
+            </ul>
+            </td>
+            <td>250$</td>
+        </tr>
+        <tr>
+            <td>
+            <ul>
+           <li>Mainboard &copy;</li>
+           </ul>
+            </td>
+            <td>400$</td>
+        </tr>
+        <tr>
+            <td>
+            <ul>
+            <li>SSD</li>
+            </ul>
+            </td>
+            <td>300$</td>
+        </tr>
+        <tr>
+            <td>
+            <ul>
+            <li>Ram</li>
+            </ul>
+            </td>
+            <td>200$</td>
+        </tr>
+    </table>
+
+    <!--Button-->
+    <button onclick="changeColor()">Change Color</button>
+
+    <!--JavaScript-->
+    <script>
+        function changeColor() {
+            const table = document.getElementById("priceTable");
+            table.style.color = "red"
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Computer Parts Price List</title>
+
+  <!-- CSS -->
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 400px;
+      margin-bottom: 15px;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+
+    button {
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h3>Computer Parts Price List</h3>
+
+  <!-- TABLE -->
+  <table id="priceTable">
+    <tr>
+      <th>Part</th>
+      <th>Price</th>
+    </tr>
+    <tr>
+      <td>CPU &trade;</td>
+      <td>$250</td>
+    </tr>
+    <tr>
+      <td>Motherboard &copy;</td>
+      <td>$150</td>
+    </tr>
+    <tr>
+      <td>RAM &reg;</td>
+      <td>$80</td>
+    </tr>
+    <tr>
+      <td>SSD</td>
+      <td>$120</td>
+    </tr>
+  </table>
+
+  <!-- BUTTON -->
+  <button onclick="changeColor()">Change Color</button>
+
+  <!-- JavaScript -->
+  <script>
+    function changeColor() {
+      const table = document.getElementById("priceTable");
+      table.style.color = "red";
+    }
+  </script>
+
+</body>
+</html>
