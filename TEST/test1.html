@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>User Registration</title>
+
+  <!-- ================= CSS ================= -->
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f2f2f2;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Form dùng Flexbox */
+    form {
+      width: 360px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input, button {
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background: #2563eb;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+    }
+
+    /* Text lỗi */
+    .error {
+      color: red;
+      font-size: 14px;
+      min-height: 16px;
+    }
+
+    /* Password strength */
+    .strength {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ================= HTML ================= -->
+<form id="registerForm">
+  <h3>Register</h3>
+
+  <!-- Username -->
+  <label>Username</label>
+  <input type="text" id="username">
+  <div class="error" id="userError"></div>
+
+  <!-- Password -->
+  <label>Password</label>
+  <input type="password" id="password">
+  <div class="strength" id="strengthText"></div>
+  <div class="error" id="passError"></div>
+
+  <!-- Profile Picture -->
+  <label>Profile Picture (JPG / PNG)</label>
+  <input type="file" id="image">
+  <div class="error" id="imgError"></div>
+
+  <button type="submit">Register</button>
+</form>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+  /* Lấy các phần tử */
+  const username = document.getElementById("username");
+  const password = document.getElementById("password");
+  const image = document.getElementById("image");
+
+  const userError = document.getElementById("userError");
+  const passError = document.getElementById("passError");
+  const imgError = document.getElementById("imgError");
+  const strengthText = document.getElementById("strengthText");
+
+  /* 1. Check Username: 5–15 ký tự */
+  function checkUsername() {
+    if (username.value.length < 5 || username.value.length > 15) {
+      userError.textContent = "Username phải từ 5 đến 15 ký tự";
+      return false;
+    }
+    userError.textContent = "";
+    return true;
+  }
+
+  /* 2. Check Password: phải có chữ và số */
+  function checkPassword() {
+    const hasLetter = /[a-zA-Z]/.test(password.value);
+    const hasNumber = /[0-9]/.test(password.value);
+
+    if (!hasLetter || !hasNumber) {
+      passError.textContent = "Password phải chứa chữ và số";
+      return false;
+    }
+    passError.textContent = "";
+    return true;
+  }
+
+  /* 3. Password Strength (realtime) */
+  function passwordStrength() {
+    let score = 0;
+
+    if (/[a-zA-Z]/.test(password.value)) score++;
+    if (/[0-9]/.test(password.value)) score++;
+    if (password.value.length >= 8) score++;
+
+    if (password.value === "") {
+      strengthText.textContent = "";
+    } else if (score === 1) {
+      strengthText.textContent = "Weak";
+    } else if (score === 2) {
+      strengthText.textContent = "Medium";
+    } else if (score === 3) {
+      strengthText.textContent = "Strong";
+    }
+  }
+
+  /* 4. Check Image: JPG hoặc PNG */
+  function checkImage() {
+    const file = image.files[0];
+
+    if (!file) {
+      imgError.textContent = "Vui lòng chọn ảnh";
+      return false;
+    }
+
+    if (file.type !== "image/jpeg" && file.type !== "image/png") {
+      imgError.textContent = "Chỉ chấp nhận JPG hoặc PNG";
+      return false;
+    }
+
+    imgError.textContent = "";
+    return true;
+  }
+
+  /* Realtime validation */
+  username.addEventListener("input", checkUsername);
+
+  password.addEventListener("input", () => {
+    checkPassword();
+    passwordStrength();
+  });
+
+  image.addEventListener("change", checkImage);
+
+  /* Submit form */
+  document.getElementById("registerForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    if (checkUsername() && checkPassword() && checkImage()) {
+      alert("Đăng ký thành công!");
+    }
+  });
+</script>
+
+</body>
+</html>
