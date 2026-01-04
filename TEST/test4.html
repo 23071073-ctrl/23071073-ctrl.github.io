@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Restaurant Menu</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    h2 {
+      margin-top: 25px;
+      margin-bottom: 10px;
+    }
+
+    .menu {
+      max-width: 520px;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 8px;
+    }
+
+    button {
+      padding: 8px 12px;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="menu">
+    <h1>Restaurant Menu</h1>
+
+    <button onclick="filterMenu()">Filter Menu</button>
+    <p id="status">Showing: All items</p>
+
+    <!-- Appetizers -->
+    <h2>Appetizers &reg;</h2>
+    <div class="item veg">
+      <span>Spring Rolls</span>
+      <span>&ge; $5</span>
+    </div>
+    <div class="item">
+      <span>Chicken Wings</span>
+      <span>&ge; $7</span>
+    </div>
+
+    <!-- Main Course -->
+    <h2>Main Course &sect;</h2>
+    <div class="item">
+      <span>Grilled Steak</span>
+      <span>&ge; $18</span>
+    </div>
+    <div class="item veg">
+      <span>Vegetable Pasta</span>
+      <span>&ge; $12</span>
+    </div>
+
+    <!-- Desserts -->
+    <h2>Desserts</h2>
+    <div class="item veg">
+      <span>Fruit Salad</span>
+      <span>&ge; $6</span>
+    </div>
+    <div class="item">
+      <span>Chocolate Cake</span>
+      <span>&ge; $8</span>
+    </div>
+
+    <!-- Drinks -->
+    <h2>Drinks</h2>
+    <div class="item veg">
+      <span>Fresh Orange Juice</span>
+      <span>&ge; $4</span>
+    </div>
+    <div class="item">
+      <span>Iced Coffee</span>
+      <span>&ge; $3</span>
+    </div>
+  </div>
+
+  <script>
+    let showVegOnly = false;
+
+    function filterMenu() {
+      const allItems = document.getElementsByClassName("item");
+      const vegItems = document.getElementsByClassName("veg");
+      const status = document.getElementById("status");
+
+      if (showVegOnly === false) {
+        // Hide all first
+        for (let i = 0; i < allItems.length; i++) {
+          allItems[i].style.display = "none";
+        }
+
+        // Show only vegetarian items
+        for (let i = 0; i < vegItems.length; i++) {
+          vegItems[i].style.display = "flex";
+        }
+
+        status.textContent = "Showing: Vegetarian only";
+        showVegOnly = true;
+      } else {
+        // Show all items again
+        for (let i = 0; i < allItems.length; i++) {
+          allItems[i].style.display = "flex";
+        }
+
+        status.textContent = "Showing: All items";
+        showVegOnly = false;
+      }
+    }
+  </script>
+</body>
+</html>
