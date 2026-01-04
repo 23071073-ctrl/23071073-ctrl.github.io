@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+
+    <style>
+        table {
+            text-align: left;
+            width: 400px;
+            border: 1px solid black;
+            border-collapse: collapse ;
+            margin-bottom: 20px;
+        }
+        tr,td {
+            border: 1px solid black;
+            padding: 8px;
+            
+        }
+        th {
+            text-align: center;
+            border: 1px solid black
+        }
+        tr:nth-child(even) {
+            background-color: aqua;
+
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Subjects</th>
+            <th>Grades</th>
+        </tr>
+        <tr>
+            <td>English</td>
+            <td><input type="number" class="grade"></td>
+        </tr>
+        <tr>
+            <td>Math</td>
+            <td><input type="number" class="grade"></td>
+        </tr>
+        <tr>
+            <td>History</td>
+            <td><input type="number" class="grade"></td>
+        </tr>
+        <tr>
+            <td>Physics</td>
+            <td><input type="number" class="grade"></td>
+        </tr>
+    </table>
+
+<!--Button-->
+<button onclick="calculateAverage()">Calculate Average</button>
+
+<p id="result"></p>
+
+<script>
+    function calculateAverage(params) {
+        const grades = document.querySelectorAll(".grade")
+        let sum = 0
+
+        for (let index = 0; index < grades.length; index++) {
+            const element = grades[index];
+            sum += Number(element.value);
+
+        }
+        const average = sum / grades.length;
+
+        document.getElementById("result").textContent = "Average Grade: " + average;
+    }
+</script>
+</body>
+</html>
