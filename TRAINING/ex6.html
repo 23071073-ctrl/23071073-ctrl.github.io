@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore Website Navigation</title>
+
+    <style>
+        #navMenu {
+            padding: 20px;
+            border: 1px solid;
+            width: fit-content;
+            margin-top: 10px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .bullet{
+            padding: 20px
+        }
+
+        .hidden{
+            display: none; /* Làm Menu biến mất */
+        }
+
+    </style>
+</head>
+<body>
+    <h2>Bookstore Website</h2>
+
+    <button onclick="toggleMenu()">Toggle Menu</button>
+    <nav id="navMenu">
+        <a href="#">Home</a>
+        <span class="bullet">&#8226;</span>
+
+        <a href="#">Book &copy;</a>
+        <span class="bullet">&#8226;</span>
+
+        <a href="#">Authors &trade;</a>
+        <span class="bullet">&#8226;</span>
+
+        <a href="#">Contact</a>
+        <span class="bullet">&#8226;</span>
+    </nav>
+
+    <script>
+        function toggleMenu(params) {
+            const menu = document.getElementById("navMenu");
+            menu.classList.toggle("hidden");
+        }
+    </script>
+</body>
+</html>
