@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tabbed Content</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    .tab {
+      padding: 10px 14px;
+      border: 1px solid black;
+      background: #f2f2f2;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .tab.active {
+      background: black;
+      color: white;
+    }
+
+    .content {
+      border: 1px solid black;
+      padding: 15px;
+      display: none; /* hide all by default */
+    }
+
+    .content.active {
+      display: block; /* show only active content */
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Tabbed Content Interface</h2>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <div class="tab active" id="tab-features" onclick="switchTab('features')">
+      → Features &reg;
+    </div>
+    <div class="tab" id="tab-pricing" onclick="switchTab('pricing')">
+      Pricing &euro;
+    </div>
+    <div class="tab" id="tab-reviews" onclick="switchTab('reviews')">
+      Reviews
+    </div>
+    <div class="tab" id="tab-support" onclick="switchTab('support')">
+      Support
+    </div>
+  </div>
+
+  <!-- Contents -->
+  <div class="content active" id="content-features">
+    <h3>Features &reg;</h3>
+    <p>Here are the main features of our product.</p>
+  </div>
+
+  <div class="content" id="content-pricing">
+    <h3>Pricing &euro;</h3>
+    <p>Basic: &euro;10 / month<br>Pro: &euro;20 / month</p>
+  </div>
+
+  <div class="content" id="content-reviews">
+    <h3>Reviews</h3>
+    <p>Customers love this product. Rating: 4.8/5.</p>
+  </div>
+
+  <div class="content" id="content-support">
+    <h3>Support</h3>
+    <p>Contact us at support@example.com or call 123-456.</p>
+  </div>
+
+  <script>
+    function switchTab(tabName) {
+      // 1) Get all tabs and contents
+      const tabs = document.getElementsByClassName("tab");
+      const contents = document.getElementsByClassName("content");
+
+      // 2) Remove active + remove arrow from all tabs
+      for (let i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("active");
+        tabs[i].textContent = tabs[i].textContent.replace("→ ", "");
+      }
+
+      // 3) Hide all contents
+      for (let i = 0; i < contents.length; i++) {
+        contents[i].classList.remove("active");
+      }
+
+      // 4) Add active to clicked tab + add arrow
+      const activeTab = document.getElementById("tab-" + tabName);
+      activeTab.classList.add("active");
+      activeTab.textContent = "→ " + activeTab.textContent;
+
+      // 5) Show corresponding content
+      const activeContent = document.getElementById("content-" + tabName);
+      activeContent.classList.add("active");
+    }
+  </script>
+</body>
+</html>
