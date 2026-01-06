@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Showcase</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 8px 12px;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      max-width: 700px;
+    }
+
+    .card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    .name {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0 0 8px;
+    }
+
+    .price {
+      font-weight: bold;
+      margin: 0 0 8px;
+    }
+
+    .desc {
+      margin: 0;
+      color: #444;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Product Showcase &reg; &rarr;</h2>
+  <button type="button" onclick="togglePrice()">Toggle Price</button>
+
+  <div class="grid">
+    <div class="card">
+      <p class="name">Smart Watch &reg;</p>
+      <p class="price">&euro;99</p>
+      <p class="desc">Track your health and notifications.</p>
+    </div>
+
+    <div class="card">
+      <p class="name">Wireless Headphones</p>
+      <p class="price">&euro;79</p>
+      <p class="desc">Clear sound with noise reduction.</p>
+    </div>
+
+    <div class="card">
+      <p class="name">Gaming Mouse</p>
+      <p class="price">&euro;35</p>
+      <p class="desc">Fast response for better control.</p>
+    </div>
+
+    <div class="card">
+      <p class="name">Laptop Bag</p>
+      <p class="price">&euro;25</p>
+      <p class="desc">Strong protection for your device.</p>
+    </div>
+  </div>
+
+  <script>
+    let priceHidden = false;
+
+    function togglePrice() {
+      const prices = document.getElementsByClassName("price");
+
+      for (let index = 0; index < prices.length; index++) {
+        const element = prices[index];
+
+        if (priceHidden) {
+          element.style.display = "block";
+        } else {
+          element.style.display = "none";
+        }
+      }
+
+      priceHidden = !priceHidden;
+    }
+  </script>
+</body>
+</html>

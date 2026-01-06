@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Showcase</title>
+
+    <style>
+        body{
+            padding: 10px;
+        }
+        .card{
+            box-shadow: 0px 3px 8px;
+            width: 200px;
+            text-align: center;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .card:hover{
+            transform: translateY(-4px);
+        }
+
+        .desc{
+            padding: 5px;
+
+        }
+    </style>
+</head>
+<body>
+    <h2>Product Showcase &reg;</h2>
+
+    <button type="button" onclick="toggleMenu()">Toggle Menu &rarr;</button>
+
+    <div class="grid">
+        <div class="card">
+            <p>Laptop Gaming</p>
+            <p class="price">199 &euro;</p>
+            <p class="desc">Best laptop for gaming !</p>
+        </div>
+
+        <div class="card">
+            <p>Wireless Mouse</p>
+            <p class="price">99 &euro;</p>
+            <p class="desc">Best wireless mouse</p>
+        </div>
+
+        <div class="card">
+            <p>Logitech Keyboard</p>
+            <p class="price">70 &euro;</p>
+            <p class="desc">Best Logitech keyboard</p>
+        </div>
+
+        <div class="card">
+            <p>LG Monitor</p>
+            <p class="price">85 &euro;</p>
+            <p class="desc">Best LG Monitor</p>
+        </div>
+    </div>
+
+    <script>
+        let priceHidden = false;
+        function toggleMenu(params) {
+            const prices = document.getElementsByClassName("price")
+            for (let index = 0; index < prices.length; index++) {
+                const element = prices[index];
+
+                if (priceHidden) {
+                    element.style.display = "block"
+                } else {
+                    element.style.display = "none"
+                }
+                
+            }
+            priceHidden = !priceHidden;
+        }
+    </script>
+</body>
+</html>
