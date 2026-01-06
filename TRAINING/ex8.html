@@ -11,7 +11,13 @@
             width: 300px;
             padding: 20px;
         }
-        
+        button {
+            margin-top: 10px;
+        }
+        .message {
+            margin-top: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -26,8 +32,8 @@
     <br>
     <label for="subscription">Supscription</label>
     <div class="group">
-        <label><input type="radio" name="subType" value="Monthly"/>Monthly</label>
-        <label><input type="radio" name="subType" value="Monthly"/>Monthly</label>
+        <label><input type="radio" name="subType" value="Monthly" checked/>Monthly</label>
+        <label><input type="radio" name="subType" value="Yearly"/>Yearly</label>
     </div>
     <br>
     <label>Interests</label>
@@ -44,11 +50,11 @@
 
     <script>
         function submitForm() {
-            const fullName = document.getElementById=('fullName').value.trim();
-            const email = document.getElementById=('email').value.trim();
-            const result = document.getElementById=('result');
+            const fullName = document.getElementById("fullName").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const result = document.getElementById("result");
 
-            const emailValid = email.includes('@') && email.split("@") [1].includes(".")
+            const emailValid = email.includes("@") && email.split("@") [1].includes(".")
 
             const interests = document.getElementsByClassName("interest");
             let anyChecked = false;
