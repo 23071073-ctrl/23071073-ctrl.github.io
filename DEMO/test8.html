@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Newsletter Subscription</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    form {
+      width: 420px;
+      border: 1px solid black;
+      padding: 15px;
+      display: grid;
+      grid-template-columns: 140px 1fr; /* label | input */
+      gap: 10px;
+      align-items: center;
+    }
+
+    h2 {
+      grid-column: 1 / -1;
+      margin: 0 0 10px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      padding: 6px;
+      border: 1px solid #999;
+    }
+
+    .group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      grid-column: 1 / -1;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .message {
+      grid-column: 1 / -1;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <form id="subForm">
+    <h2>Newsletter Subscription</h2>
+
+    <!-- Full Name -->
+    <label for="fullName">Full Name</label>
+    <input type="text" id="fullName" />
+
+    <!-- Email -->
+    <label for="email">Email</label>
+    <input type="email" id="email" />
+
+    <!-- Subscription Type -->
+    <label>Subscription</label>
+    <div class="group">
+      <label><input type="radio" name="subType" value="Monthly" checked /> Monthly</label>
+      <label><input type="radio" name="subType" value="Yearly" /> Yearly</label>
+    </div>
+
+    <!-- Interests -->
+    <label>Interests</label>
+    <div class="group">
+      <label><input type="checkbox" class="interest" value="Tech" /> Tech</label>
+      <label><input type="checkbox" class="interest" value="Books" /> Books</label>
+      <label><input type="checkbox" class="interest" value="Sports" /> Sports</label>
+    </div>
+
+    <button type="button" onclick="submitForm()">Subscribe</button>
+
+    <div class="message" id="result"></div>
+  </form>
+
+  <script>
+    function submitForm() {
+      const fullName = document.getElementById("fullName").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const result = document.getElementById("result");
+
+      // Email rule: must contain @ and a domain (dot after @)
+      const emailValid = email.includes("@") && email.split("@")[1].includes(".");
+
+      // Interest rule: at least one checkbox checked
+      const interests = document.getElementsByClassName("interest");
+      let anyChecked = false;
+
+      for (let index = 0; index < interests.length; index++) {
+        const element = interests[index];
+        if (element.checked) {
+          anyChecked = true;
+        }
+      }
+
+      if (fullName === "" || email === "") {
+        result.textContent = "Please fill in Full Name and Email.";
+        result.style.color = "red";
+        return;
+      }
+
+      if (!emailValid) {
+        result.textContent = "Invalid email. Email must contain @ and domain.";
+        result.style.color = "red";
+        return;
+      }
+
+      if (!anyChecked) {
+        result.textContent = "Please select at least one interest.";
+        result.style.color = "red";
+        return;
+      }
+
+      result.textContent = "Subscribed successfully!";
+      result.style.color = "green";
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter Subscription</title>
+
+    <style>
+        form {
+            display: grid;
+            width: 300px;
+            padding: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <form id="subForm">
+    <h2>Newsletter Subscription</h2>
+
+    <label for="fullName">Full Name</label>
+    <input type="text" id="fullName">
+    <br>
+    <label for="email">Email</label>
+    <input type="email" id="email">
+    <br>
+    <label for="subscription">Supscription</label>
+    <div class="group">
+        <label><input type="radio" name="subType" value="Monthly"/>Monthly</label>
+        <label><input type="radio" name="subType" value="Monthly"/>Monthly</label>
+    </div>
+    <br>
+    <label>Interests</label>
+    <div class="group">
+        <label><input type="checkbox" class="interest" value="Video Game">Video Game</label>
+        <label><input type="checkbox" class="interest" value="Sports">Sports</label>
+        <label><input type="checkbox" class="interest" value="Photograph">Photograph</label>
+    </div>
+
+    <button type="button" onclick="submitForm()">Submit</button>
+
+    <div class="message" id="result"></div>
+    </form>
+
+    <script>
+        function submitForm() {
+            const fullName = document.getElementById=('fullName').value.trim();
+            const email = document.getElementById=('email').value.trim();
+            const result = document.getElementById=('result');
+
+            const emailValid = email.includes('@') && email.split("@") [1].includes(".")
+
+            const interests = document.getElementsByClassName("interest");
+            let anyChecked = false;
+
+            for (let index = 0; index < interests.length; index++) {
+                const element = interests[index];
+                if (element.checked) {
+                    anyChecked = true;
+                }
+            }
+        
+
+        if (fullName === "" || email === "") {
+            result.textContent = "Please fill in Fullname and Email";
+            result.style.color = "red";
+            return;
+        }
+
+        if (!emailValid) {
+            result.textContent = "Invalid email. Email must includes @ and domain.";
+            result.style.color = "red";
+            return;
+        }
+
+        if (!anyChecked) {
+            result.textContent = "Please select at least one interest"
+            result.style.color = "red";
+            return;
+        }
+
+        result.textContent = "Subscribed successfully!";
+        result.style.color = "green"
+    }
+    </script>
+  
+
+</body>
+</html>
