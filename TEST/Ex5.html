@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabbed Content Interface</title>
+
+    <style>
+        .tabs {
+            display: flex;
+            gap: 20px;
+        }
+        .tab {
+            border: solid 1px black;
+            cursor: pointer;
+            padding: 10px 14px;
+        }
+        .content {
+            display: none;
+            border: 1px solid black;
+        }
+        .tab.active {
+            background: black;
+            color: white;
+        }
+        .content.active {
+            display: block;
+            margin-top: 10px;
+        }
+        .tab.active::before {
+            content: "\2192"
+        }
+
+    </style>
+</head>
+<body>
+    <h2>Tabbed Content Interface</h2>
+
+    <div class="tabs">
+        <div class="tab" id="tab-features" onclick="switchTab('features')">
+            Features &reg;
+        </div>
+
+        <div class="tab" id="tab-pricing" onclick="switchTab('pricing')">
+            Pricing &euro;
+        </div>
+
+        <div class="tab active" id="tab-reviews" onclick="switchTab('reviews')">
+            Reviews
+        </div>
+
+        <div class="tab" id="tab-support" onclick="switchTab('support')">
+            Support
+        </div>
+    </div>
+
+    <div class="contents">
+        <div class="content active" id="content-features" >
+            <p> This is our features</p>
+        </div>
+
+        <div class="content" id="content-pricing" >
+            <p> 10 &euro;/month
+                <br>25 &euro;/year
+            </p>
+        </div>
+
+        <div class="content" id="content-reviews" >
+            <p> Rate: 4.5/5
+                <br>Good product!
+            </p>
+        </div>
+
+        <div class="content" id="content-support" >
+            <p> Call 123-456 for help</p>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            const tabs = document.getElementsByClassName("tab")
+            const contents = document.getElementsByClassName("content")
+
+            for (let index = 0; index < tabs.length; index++) {
+                const element = tabs[index];
+                element.classList.remove("active")
+            }
+
+            for (let index = 0; index < contents.length; index++) {
+                const element = contents[index];
+                element.classList.remove("active")
+                
+            }
+
+            const activeTab = document.getElementById("tab-" + tabName);
+            activeTab.classList.add("active");
+            const activeContent = document.getElementById("content-" + tabName);
+            activeContent.classList.add("active");
+
+        }
+    </script>
+</body>
+</html>

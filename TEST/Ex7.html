@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+
+    <style>
+        form {
+            border: 1px solid black;
+            width: 200px;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Contact Form</h2>
+    <form id="contactForm">
+        <label for="name">Name</label>
+        <input type="text" id="name">
+        <br>
+        <label for="email">Email</label>
+        <input type="email" id="email">
+        <br>
+        <label for="message">Message</label>
+        <textarea name="message" id="message"></textarea>
+        <br>
+        <button type="button" onclick="submitForm()">Submit</button>
+        <div id="result"></div>
+    </form>
+
+    <script>
+        function submitForm(params) {
+            const name = document.getElementById("name").value
+            const email = document.getElementById("email").value
+            const message = document.getElementById("message").value
+            const result = document.getElementById("result")
+            if (name === "" || email === "" || message === "") {
+                result.textContent = "Please fill in all field"
+                result.style.color = "red"
+            } else {
+                result.textContent = "Send Successfully!"
+                result.style.color = "green"
+            }
+        }
+    </script>
+</body>
+</html> 

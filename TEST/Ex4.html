@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+
+    <style>
+        table {
+            padding: 10px;
+            text-align: center;
+            width: 500px;
+            font-size: 20px;
+            line-height: 2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Restaurant Menu</h1>
+
+    <button type="button" onclick="filterMenu()">Filter Menu</button>
+    <p id="status">Showing: All items</p>
+
+    <table>
+        <tr>
+            <th>Appetizers &reg;</th>
+            <th>Price</th>
+        </tr>
+        <tr class="item">
+            <td>Chicken Wings</td>
+            <td> &ge; $59</td>
+        </tr>
+        <tr class="item vegetarian">
+            <td>Salad</td>
+            <td> &ge; $49</td>
+        </tr>
+        <tr>
+        <th> Main Course &sect;</th>
+        </tr>
+        <tr class="item">
+            <td>Beefsteak</td>
+            <td>&ge; $79</td>
+        </tr>
+        <tr class="item vegetarian">
+            <td>Carrot Soup</td>
+            <td>&ge; $39</td>
+        </tr>
+        <tr>
+            <th>Desserts</th>
+        </tr>
+        <tr class="item vegetarian">
+            <td>Fruit Salad</td>
+            <td>&ge; $19</td>
+        </tr>
+        <tr class="item">
+            <td>Chocolate Cake</td>
+            <td>&ge; $29</td>
+        </tr>
+        <tr>
+            <th>Drinks</th>
+        </tr>
+        <tr class="item vegetarian">
+            <td>Orange Juice</td>
+            <td>&ge; $10</tr>
+        </tr>
+        <tr class="item">
+            <td>Beer</td>
+            <td>&ge; $15</td>
+        </tr>
+    </table>
+
+    <script>
+        let showVegOnly = false;
+        function filterMenu(params) {
+            const allItems = document.getElementsByClassName("item")
+            const vegItems = document.getElementsByClassName("vegetarian")
+            const status = document.getElementById("status")
+
+            if (showVegOnly === false) {
+                for (let index = 0; index < allItems.length; index++) {
+                    const element = allItems[index];
+                    element.style.display = "none"
+                }
+                for (let index = 0; index < vegItems.length; index++) {
+                    const element = vegItems[index];
+                    element.style.display = "table-row"
+                }
+                status.textContent = "Showing: Vegetarian only"
+                showVegOnly = true
+            } else {
+                for (let index = 0; index < allItems.length; index++) {
+                    const element = allItems[index];
+                    element.style.display = "table-row"
+                }
+                status.textContent = "Showing: All items"
+                showVegOnly = false
+            }
+        }
+
+
+    </script>
+</body>
+</html>

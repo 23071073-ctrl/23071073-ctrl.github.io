@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Form</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            width: 300px;
+            padding: 20px;
+            background: whitesmoke;
+        }
+    </style>
+</head>
+<body>
+    <form id="registerForm">
+        <h3>Register</h3>
+         <label for="username">Username</label>
+         <input type="text" id="username">
+         <div class="error" id="usernameError"></div>
+        <br>
+        <label for="password">Password</label>
+        <input type="password" id="password">
+        <div class="error" id="passwordError"></div>
+        <div id="strengthText"></div>
+        <br>
+        <label for="profilePic">Profile Picture</label>
+        <input type="file" id="image">
+        <div class="error" id="imgError"></div>
+        <br>
+        <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+
+    <script>
+        const username = document.getElementById("username")
+        const password = document.getElementById("password")
+        const image = document.getElementById("image")
+
+        const usernameError = document.getElementById("usernameError")
+        const passwordError = document.getElementById("passwordError")
+        const imgError = document.getElementById("imgError")
+        const strengthText = document.getElementById("strengthText")
+
+        function checkUsername(params) {
+            if (username.value.length < 5 || username.value.length > 15) {
+                usernameError.textContent = "Username must be 5-15 characters";
+                return false
+            } else {
+                usernameError.textContent = "";
+                return true
+            }
+        }
+
+        function checkPassword(params) {
+            const hasLetter = /[a-zA-Z]/.test(password.value)
+            const hasNumber = /[0-9]/.test(password.value)
+            if (!hasLetter || !hasNumber) {
+                passwordError.textContent = "Password must contain numbers and letters";
+                return false
+            } else {
+                passwordError.textContent = ""
+                return true
+            }
+        }
+
+        function passwordStrength(params) {
+            let score = 0
+            if(/[a-zA-A]/.test(password.value)) score++;
+            if(/[0-9]/.test(password.value)) score++;
+            if (password.value.length >= 8) score++;
+
+            if (password.value==="") {
+                passwordError.textContent = ""
+            }
+            if (score === 1) {
+                strengthText.textContent = "Weak"
+            }
+            if (score === 2) {
+                strengthText.textContent = "Medium"
+            }
+            if (score === 3) {
+                strengthText.textContent = "Strong"
+            }
+        }
+        function checkImage(params) {
+            const file = image.files[0];
+            if (file.type != "image/JPG" && file.type != "image/PNG") {
+                imgError.textContent = "Image must be JPG or PNG"
+                return false
+            } else {
+                imgError.textContent = ""
+                return true
+            }
+        }
+        username.addEventListener("input",checkUsername)
+
+        function checkStrength(params) {
+            checkPassword();
+            passwordStrength();
+        }
+        password.addEventListener("input",checkStrength)
+
+        image.addEventListener("change",checkImage)
+    </script>
+
+</body>
+</html>
